@@ -1,0 +1,38 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        run: |
+          git config --global user.email atutibrian20@gmail.com
+          git config --global user.name B-atuti
+          git clone https://github.com/$react-app.git deploy
+          cd deploy
+          git checkout gh-pages || git checkout --orphan gh-pages
+          git rm -rf .
+          cp -r ../build/* .
+          touch .nojekyll
+          git add -A
+          git commit -m "Deployed via GitHub Actions"
+          git push -f https://${GITHUB_TOKEN}@github.com/$react-app.git gh-pages
