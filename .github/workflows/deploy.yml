@@ -23,16 +23,3 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy to GitHub Pages
-        run: |
-          git config --global user.email brian.atuti@student.moringaschool.com
-          git config --global user.name B-atuti
-          git clone https://github.com/B-atuti/react-app.git deploy
-          cd deploy
-          git checkout gh-pages || git checkout --orphan gh-pages
-          git rm -rf .
-          cp -r ../build/* .
-          touch .nojekyll
-          git add -A
-          git commit -m "Deployed via GitHub Actions"
-          git push -f https://$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@github.com/B-atuti/react-app.git gh-pages
