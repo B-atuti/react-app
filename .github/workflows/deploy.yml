@@ -35,4 +35,4 @@ jobs:
           touch .nojekyll
           git add -A
           git commit -m "Deployed via GitHub Actions"
-          git push -f https://$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@github.com/react-app.git gh-pages
+          git push -f https://$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@github.com/B-atuti/react-app.git gh-pages
