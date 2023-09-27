@@ -27,7 +27,7 @@ jobs:
         run: |
           git config --global user.email atutibrian20@gmail.com
           git config --global user.name B-atuti
-          git clone https://github.com/$react-app.git deploy
+          git clone https://github.com/react-app.git deploy
           cd deploy
           git checkout gh-pages || git checkout --orphan gh-pages
           git rm -rf .
